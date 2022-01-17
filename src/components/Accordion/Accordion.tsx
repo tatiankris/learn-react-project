@@ -12,7 +12,8 @@ type AccordionPropsType = {
     items: ItemType[]
     onClick: (value: any) => void
 }
-export function Accordion(props: AccordionPropsType) {
+
+function AccordionSecret(props: AccordionPropsType) {
     return (
         <div>
             <AccordionTitle title={props.titleValue} onClick={() => {props.onChange(!props.collapsed)}}/>
@@ -21,25 +22,33 @@ export function Accordion(props: AccordionPropsType) {
     )
 }
 
+export const Accordion = React.memo(AccordionSecret);
+
 type AccordionTitlePropsType = {
     title: string
     onClick: () => void
 }
-function AccordionTitle(props: AccordionTitlePropsType) {
+
+
+function AccordionTitleSecret(props: AccordionTitlePropsType) {
     return (
         <h3 onClick={props.onClick}>{props.title}</h3>
     );
 }
+
+const AccordionTitle = React.memo(AccordionTitleSecret);
+
 
 type AccordionBodyPropsType = {
     items: ItemType[]
     onClick: (value: any) => void
 }
 
-function AccordionBody(props: AccordionBodyPropsType) {
+function AccordionBodySecret(props: AccordionBodyPropsType) {
     return (
         <ul>
             {props.items.map(i => <li key={i.value} onClick={() => props.onClick(i.value)}>{i.title}</li>)}
         </ul>
     )}
 
+const AccordionBody = React.memo(AccordionBodySecret);

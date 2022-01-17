@@ -5,7 +5,7 @@ type OnOffPropsType = {
     defaultOn?: boolean
 }
 
-export function UncontrolledOnOff(props: OnOffPropsType)  {
+function UncontrolledOnOffSecret(props: OnOffPropsType)  {
 
     const [on, setOn] = useState<boolean>(props.defaultOn ? props.defaultOn : false);
 
@@ -51,4 +51,6 @@ export function UncontrolledOnOff(props: OnOffPropsType)  {
         <div style={indicatorStyle}></div>
     </div>
 }
+
+export const UncontrolledOnOff = React.memo(UncontrolledOnOffSecret);
 

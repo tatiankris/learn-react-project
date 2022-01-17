@@ -6,10 +6,9 @@ type UncontrolledRatingPropsType = {
     onChange: (alue: RatingValueType) => void
 }
 
-export function UncontrolledRating(props: UncontrolledRatingPropsType) {
+function UncontrolledRatingSecret(props: UncontrolledRatingPropsType) {
 
     const [value, setValue] = useState<number>(props.defaultValue ? props.defaultValue : 0 );
-
     return (
         <div>
             <Star selected={ value > 0 } setValue={setValue} value={1} onChange={props.onChange}/>
@@ -20,6 +19,9 @@ export function UncontrolledRating(props: UncontrolledRatingPropsType) {
         </div>
     );
 }
+export const UncontrolledRating = React.memo(UncontrolledRatingSecret);
+
+
 
 type StarPropsType = {
     selected: boolean
@@ -27,8 +29,9 @@ type StarPropsType = {
     value: 1 | 2 | 3 | 4 | 5
     onChange: (value: RatingValueType) => void
 }
-function Star(props: StarPropsType) {
+function StarSecret(props: StarPropsType) {
 
     return <span onClick={() => { props.setValue(props.value); props.onChange(props.value)} }>{props.selected ? <b>star </b> : "star "}</span>
-
 }
+const Star = React.memo(StarSecret);
+
